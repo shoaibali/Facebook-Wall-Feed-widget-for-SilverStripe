@@ -1,0 +1,166 @@
+#facebook_status_box {
+  background: #ffffff;
+  color: #383838;
+  margin: 0px;
+  padding: 0px;
+  width: 296px;
+  height: 450px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+#facebook_status_box h2, #facebook_status_box h5 {
+  margin: 0px;
+  padding: 0px;
+}
+#facebook_status_box p {
+  margin: 0px;
+  padding: 5px 0px 0px 0px;
+  color: #383838;
+  line-height: 150%;
+}
+#facebook_status_box h2 {
+  padding: 10px 0px 10px 30px;
+  background: #F6F6F6;
+  letter-spacing: -.5px;
+  font-size: 1.4em;
+  color: #383838;
+}
+#facebook_status_box #facebook_canvas {
+  overflow: auto;
+  height: 409px;  
+}
+#facebook_status_box .fb_post {
+  margin: 10px 4px;
+  border: 1px solid #C4CDE0;
+  padding: 3px;
+  border-radius: 3px;
+}
+#facebook_status_box .fb_post h5 {
+  padding: 0px;
+  font-size: 11px;
+  margin-bottom: 2px;
+  line-height: 1;
+}
+#facebook_status_box .fb_post h5 a {
+  color: #0A7A98;
+  text-decoration: none;
+}
+#facebook_status_box .fb_post .fb_photoblock {
+  border-bottom: 1px solid #e6e6fa;
+  overflow: hidden;
+  padding: 7px;
+  margin: 0;
+}
+#facebook_status_box .fb_post .fb_photo {
+  float: left;
+  width: 32px;
+  margin-right: 2px;
+}
+#facebook_status_box .fb_post .fb_time {
+  color: #999999;
+}
+#facebook_status_box .fb_post .fb_time img {
+  padding-right: 5px;
+}
+#facebook_status_box .fb_post .fb_photo img {
+  border: none;
+  width: 32px;
+  height: 32px;
+}
+#facebook_status_box .fb_post .fb_photo_content {
+  font-size: 11px;
+  float: left;
+  width: 85%;
+}
+#facebook_status_box .fb_post .fb_msg {
+  clear: both;
+  padding: 7px;
+  overflow: hidden;
+}
+#facebook_status_box .fb_post .fb_msg p {
+  font-size: 12px;
+}
+#facebook_status_box .fb_link_post img {
+  margin: 0px 3px 0px 0px;
+  float: left;
+}
+#facebook_status_box .fb_link_post h6 {
+  font-size: .9em;
+  margin: 3px 0px 0px 0px;
+}
+#facebook_status_box .fb_link_post a {
+  color: #0A7A98;
+  text-decoration: none;
+}
+#facebook_status_box .fb_link_post a:hover {
+  text-decoration: underline;
+}
+#facebook_status_box .fb_link_post p {
+  font-size: .9em;
+  color: #999999;
+}
+#facebook_status_box .fb_link_post p.fb_link_caption {
+  margin: 0px;
+  margin-top: -5px;
+  color: #383838;
+}
+#facebook_status_box .fb_link_post p.fb_vid_length {
+  font-size: 10px;
+}
+#facebook_status_box .fb_link_post p.fb_desc {
+  font-size: 11px;
+}
+#facebook_status_box .fb_link_post p.fb_cap {
+  font-size: 11px;
+  color: #000000;
+}
+#facebook_status_box .fb_post img.fb_post_icon {
+  float: left;
+  margin: 2px;
+}
+#facebook_status_box .fb_post .fb_commLink {
+  font-size: 11px;
+  background: #EDEFF4;
+  padding: 3px 7px;
+  clear: both;
+}
+#facebook_status_box .fb_post .fb_commLink a {
+  color: #0A7A98;
+  text-decoration: none;
+}
+#facebook_status_box .fb_post .fb_msg .fb_commLink a:hover {
+  text-decoration: underline;
+}
+#facebook_status_box .fb_post .fb_likes {
+  float: right;
+  margin-left: 5px;
+}
+#facebook_status_box .fb_post .fb_likes a {
+  background-image: url(http://static.ak.fbcdn.net/rsrc.php/v1/yx/r/zGa_R4SG5mm.png);
+  background-repeat: no-repeat;
+  background-position: -11px -172px;
+  height: 14px;
+  padding-left: 18px;
+}
+#facebook_status_box .fb_msg p.fb_story {
+  font-size: 10px;
+  color: #999999;
+}
+#facebook_status_box .fb_post .fb_comments {
+  background-color: #EDEFF4;
+  font-size: 11px;
+  border-bottom: 1px solid #e6e6fa;
+  overflow: hidden;
+  padding: 7px;
+  margin: 0;
+}
+#facebook_status_box .fb_post .fb_comments p {
+  font-size: 11px;
+  margin: 0;
+  padding: 0;
+  float: left;
+}
+#facebook_status_box .fb_post .fb_comments a {
+  color: #0A7A98;
+  text-decoration: none;
+}
