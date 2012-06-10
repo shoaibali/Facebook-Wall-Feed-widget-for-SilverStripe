@@ -443,7 +443,7 @@ class FacebookFeedWidget extends Widget {
         $date_str = $time_stamp[ 0 ];
         $date_items = explode( '-', $date_str );
         $time_arr = explode( ':', $time_stamp[ 1 ] );
-        $time_hr = $time_arr[ 0 ] + $offset;
+        $time_hr = $time_arr[ 0 ]; // TODO use $offset
         if ( $time_hr < 0 ) {
             $time_hr += 24;
             $date_items[ 2 ]--;
