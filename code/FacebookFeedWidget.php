@@ -196,6 +196,10 @@ class FacebookFeedWidget extends Widget {
                 $fb_likes = 0;
                 if ( isset( $fb_feed[ $i ][ 'likes' ][ 'count' ] ) )
                     $fb_likes = $fb_feed[ $i ][ 'likes' ][ 'count' ];
+                $fb_comments = 0;
+                if ( isset( $fb_feed[ $i ][ 'comments' ][ 'count' ] ) )
+                    $fb_comments = $fb_feed[ $i ][ 'comments' ][ 'count' ];
+                
                 $fb_prop = FALSE;
                 $fb_prop_name = NULL;
                 $fb_prop_text = NULL;
@@ -297,7 +301,7 @@ class FacebookFeedWidget extends Widget {
                 $result .=
                   '        </span>' .
                   '        <span class="fb_comment">' .
-                  '          <a href="' . $comment_link . '"' . $target . '>' . 'Comment' . '</a>' .
+                  '          <a href="' . $comment_link . '"' . $target . '>' . 'Comment' . '</a> (' . $fb_comments .')'.
                   '        </span>' .
                   '      </div>' .
                   '      <div style="clear: both;"></div>' .
