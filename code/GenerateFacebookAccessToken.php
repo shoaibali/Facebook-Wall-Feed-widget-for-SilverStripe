@@ -9,9 +9,19 @@ class GenerateFacebookAccessToken extends BuildTask {
  
     function run($request) {
             
-        $config =SiteConfig::current_site_config();
+        if(class_exists("SiteConfig")) {
+            $config =SiteConfig::current_site_config();
+            $facebook_page_id = $config->FacebookPageID;
+            $facebook_app_secret = $config->FacebookAppSecret;
+            $facebook_app_id = $config->FacebookAppID;
+        } else {
+            $facebook_page_id = FACEBOOK_PAGE_ID;
+            $facebook_app_secret = FACEBOOK_APP_SECRET;
+            $facebook_app_id = FACEBOOK_APP_ID;
+        }
         
-        if(isset($config->FacebookPageID) && isset($config->FacebookAppSecret) && isset($config->FacebookAppID)){
+ 
+        if(isset($facebook_page_id) && isset($facebook_app_secret) && isset($facebook_app_id)){
 
            // first request access /permission to 
            if ( !empty( $request[ 'code' ] ) ) {  // if the $request["code"] is present it means we just got back from facebook hence skip set_access
@@ -21,13 +31,13 @@ class GenerateFacebookAccessToken extends BuildTask {
                 
                 if(isset($access_token)){
                 
-                    echo "Your access_token is: <strong>" . $access_token . "</strong> <br/>";
-                    echo "Which has been stored in the database/site configuration for you!";
+                    echo "Your access_token is: <strong>" . $access_token . "</strong> - if you are using SilverStripe 2.3 please stick this in to your _config.php manually <br/>";
+                    echo "If you are using SilverStripe 2.4+ the access_token has been stored in the database/site configuration for you!";
                     
-                    $config->FacebookAccessToken = $access_token;
-                    
-                    $config->write();
-                    
+                    if(class_exists("SiteConfig")){
+                        $config->FacebookAccessToken = $access_token;
+                        $config->write();
+                    }
                     
                 }       
 
@@ -58,7 +68,13 @@ class GenerateFacebookAccessToken extends BuildTask {
          *
          */
         function set_access() {
-            $config =SiteConfig::current_site_config();
+        
+            if(class_exists("SiteConfig")){
+                $config =SiteConfig::current_site_config();
+                $facebook_app_id = $config->FacebookAppID;
+            } else {
+                $facebook_app_id = FACEBOOK_APP_ID;
+            }
             // CSRF protection
             $session = md5( uniqid( rand(), TRUE ) );
             Session::set('state', $session);
@@ -70,7 +86,7 @@ class GenerateFacebookAccessToken extends BuildTask {
             $dialog_url =
                 "http://www.facebook.com/dialog/oauth?" .
                 "scope=read_stream,offline_access,manage_pages,user_status&" .
-                "client_id=" . $config->FacebookAppID . "&state=$session&" .
+                "client_id=" . $facebook_app_id . "&state=$session&" .
                 "redirect_uri=" .  "http://" . $_SERVER["HTTP_HOST"] .  $_SERVER['REDIRECT_URL'];
                 
             Director::redirect($dialog_url);
@@ -92,7 +108,15 @@ class GenerateFacebookAccessToken extends BuildTask {
          */
         function get_token($code, $state) {
             
-            $config =SiteConfig::current_site_config();
+            if(class_exists("SiteConfig")){
+                $config =SiteConfig::current_site_config();
+                $facebook_app_id = $config->FacebookAppID;
+                $facebook_app_secret = $config->FacebookAppSecret;
+            } else {
+                $facebook_app_id = FACEBOOK_APP_ID;
+                $facebook_app_secret = FACEBOOK_APP_SECRET;
+            }
+            
             
             $access_token = NULL;
             $session_state = Session::get('state');
@@ -105,8 +129,8 @@ class GenerateFacebookAccessToken extends BuildTask {
                     
                 $token_url =
                     "https://graph.facebook.com/oauth/access_token" .
-                    "?client_id=" . $config->FacebookAppID .
-                    "&client_secret=" . $config->FacebookAppSecret .
+                    "?client_id=" . $facebook_app_id .
+                    "&client_secret=" . $facebook_app_secret .
                     "&code=$code&redirect_uri=" . "http://" . $_SERVER["HTTP_HOST"] .  $_SERVER['REDIRECT_URL'];  // TODO also make it work wit https://
 
                 $err_msg = '';

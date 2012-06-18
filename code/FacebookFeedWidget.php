@@ -60,24 +60,33 @@ class FacebookFeedWidget extends Widget {
 	 * @return DataObjectSet Array containing all relevant fields.
 	 */
 	public function Feeds(){
-        $config =SiteConfig::current_site_config();
+        if(class_exists("SiteConfig")){
+                $config =SiteConfig::current_site_config();
+                $facebook_page_id = $config->FacebookPageID;
+                $facebook_access_token = $config->FacebookAccessToken;
+
+        } else {
+            
+                $facebook_page_id = FACEBOOK_PAGE_ID;
+                $facebook_access_token = FACEBOOK_ACCESS_TOKEN;
+        }
 		/**
 		 * URL for fetchning the information, convert the returned JSON into an array.
 		 * It is required to use an access_token which in turn mandates https.
 		 */
-		if(!isset($config->FacebookAccessToken)){
+		if(!isset($facebook_access_token)){
 			user_error('Missing Facebook access token - please get one and add it to your site configuration;', E_USER_WARNING);
 			return;
 		}
         
         // TODO - Check for valid SSL wrapper being availlable see: http://stackoverflow.com/questions/1975461/file-get-contents-with-https
         
-		$url = 'https://graph.facebook.com/' . $config->FacebookPageID . '/feed?limit=' . ($this->Limit + 5) . '&access_token=' . $config->FacebookAccessToken;
+		$url = 'https://graph.facebook.com/' . $facebook_page_id . '/feed?limit=' . ($this->Limit + 5) . '&access_token=' . $facebook_access_token;
 		$facebook_feed = json_decode(@file_get_contents($url), true);
 
     
 
-        $res = $this->display_fb_wall_feed($facebook_feed["data"], $config->FacebookPageID, $config->FacebookAccessToken);
+        $res = $this->display_fb_wall_feed($facebook_feed["data"], $facebook_page_id, $facebook_access_token);
         
         
 		return $res;
