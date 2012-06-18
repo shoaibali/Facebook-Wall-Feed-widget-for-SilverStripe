@@ -11,6 +11,7 @@ PS: This plugin will also work with individual's Facebook wall feed as well. Ple
 
 ## Requirements
 SilverStripe 2.4+ (only tested on 2.4)
+Should also work with SilverStripe 2.3.3 see issue #2, you need to add the parameters in _config.php manually since 2.3.3 does not have SiteConfig
 
 
 ## Dependencies
@@ -58,14 +59,18 @@ Q. How & where do I get my Facebook profile or my Page ID?
 There are many ways to get your Page ID or your profile ID but following are the steps I found easy to use
 
 1.Make sure you are logged in to your Facebook and the Page you are trying to generate stream for you are it's administrator or have apropriate permissions.
+
 2. Find out your username usually something like this https://facebook.com/shoaibali (where shoaibali = username). If not sure you can always go to https://www.facebook.com/settings?ref=mb (General Account Settings) to find out your username.
+
 3. Now visit https://graph.facebook.com/your-user-name  (Add your username OR page name at the end of the URL) for a Cocacola page it would be https://graph.facebook.com/cocacola
+
 4. The first thing you will notice is an out put that looks like this and as you can tell "id" is 40796308305
-   "id": "40796308305",
-   "name": "Coca-Cola",
-   "picture": "http://profile.ak.fbcdn.net/hprofile-ak-snc4/174560_40796308305_2093137831_s.jpg",
-   "link": "https://www.facebook.com/coca-cola",
-   "likes": 42458554, 
+
+*   "id": "40796308305",
+*   "name": "Coca-Cola",
+*   "picture": "http://profile.ak.fbcdn.net/hprofile-ak-snc4/174560_40796308305_2093137831_s.jpg",
+*   "link": "https://www.facebook.com/coca-cola",
+*   "likes": 42458554, 
 
 5. So, the ID is 40796308305 and please make a note of this.
 
@@ -83,11 +88,15 @@ As above, you will also see App Secret on this page. https://developers.facebook
 Q. How do generate my Access Token?
 This is a little tricky! In order to generate Access Token you need the above 3 pieces of information (Page/user ID, App Secret & App ID) - see above.
 
-1. First you need to go to your App https://developers.facebook.com/apps and click [Edit Settings]
-2. You need to add App Domain which will be either you production site domain name or your development, you will have to change this when moving site from local development to production. i.e localhost to mysite.com
+1. First you need to go to your App https://developers.facebook.com/apps and click [Edit Settings].
+
+2. You need to add App Domain which will be either you production site domain name or your development, you will have to change this when moving site from local development to production. i.e localhost to mysite.com.
+
 3. Now you need to go to the section that says "Select how your app integrates with Facebook" - you need to check "Website with Facebook Login" and ente rthe "Site URL". Again this will need to be changed or updated as above. Otherwise you will get errors when trying to get access_token. The "Site URL" will be like http://localhost. 
+
 4. I assume at this point you have already ran /dev/build?flush=all if not please do so. I have registered a Task in SilverStripe called "Generate your Facebook Access Token". If you now browse to http://localhost/dev/tasks or http://mysite.com/dev/tasks you will see it at the bottom. Please click it to generate access_token. Make sure you are logged in to Facebook and you have the appropriate permissions for the Facebook App and/or the Facebook Page you are trying to get access_token for.
-5. You can also go directly to /dev/tasks/GenerateFacebookAccessToken/ to start generating an access_token
+
+5. You can also go directly to /dev/tasks/GenerateFacebookAccessToken/ to start generating an access_token.
 
 Q. I have configured all the information but my Feed is not displaying?
 If you added a facebook widget to HomePage please make sure you go to your HomePage in the CMS and enable or add the widget. Also wherever you would like to display the Feed you must call $FacebookStream variable or whatever you have called it in getCMSFields function. Also check in your SiteConfiguration that all the information is present such ass FacebookPageID, FacebookAppID, FacebookAcessToken  and FacebookAppSecret.
