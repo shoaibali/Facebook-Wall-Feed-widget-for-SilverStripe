@@ -24,6 +24,10 @@ class FacebookFeedWidget extends Widget {
 	public static $defaults = array(
 		'Limit' => 5,
 	);
+	
+	public static $show_status_messages = TRUE;
+	
+	public static $show_fb_id_only = TRUE;
 
 
 	/**
@@ -105,8 +109,8 @@ class FacebookFeedWidget extends Widget {
 		$target = '';
 		$post_count = 0;
 		$fb_privacy = "All";
-		$fb_id_only = TRUE;
-		$show_status = TRUE;
+		$fb_id_only = self::$show_fb_id_only;
+		$show_status = self::$show_status_messages;
 		$profile = TRUE;
 		$new_win = TRUE;
 		$fb_icons = TRUE;

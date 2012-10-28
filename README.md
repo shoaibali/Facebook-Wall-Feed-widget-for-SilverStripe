@@ -7,7 +7,16 @@ You have a Facebook page and regularly post status messages, photos, links, vide
 
 Thanks to a client not wanting to use the javascript fb:like-box data-stream plugin (https://developers.facebook.com/docs/reference/plugins/like-box/) which renders in an iframe, I had to develop this to grab the same information using Facebook graph API. 
 
-PS: This plugin will also work with individual's Facebook wall feed as well. Please note that it will only grab status messages, photos, links and videos etc post by the OWNER of the Page only. If you would like to change this you can do so by opening the source code FacebookFeedWidget.php and look for $fb_id_only = TRUE; and set it to $fb_id_only = FALSE, this will now show stream/activity for that page from everyone.
+PS: This plugin will also work with individual's Facebook wall feed as well. Please note that it will only grab status messages, photos, links and videos etc post by the OWNER of the Page only. If you would like to change this you can do so by adding to ``mysite/_config.php``:
+```php
+FacebookFeedWidget::$show_fb_id_only = FALSE;
+```
+
+Other options:
+```php
+\\ Do not display status messages
+FacebookFeedWidget::$show_status_messages = FALSE;
+```
 
 ## Requirements
 SilverStripe 3.0+.
