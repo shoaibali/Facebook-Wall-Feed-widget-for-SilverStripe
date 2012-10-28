@@ -11,6 +11,7 @@ PS: This plugin will also work with individual's Facebook wall feed as well. Ple
 
 ## Requirements
 SilverStripe 3.0+.
+Widgets module.
 
 
 ## Dependencies
@@ -108,7 +109,7 @@ If you added a facebook widget to HomePage please make sure you go to your HomeP
 - Add more configuration options to control the feed such as open links in new window for comments, verify SSL peer for curl, update access_token on expiry and be able to configure either to display posts from owner of the page or everyone.
 - offline_access is being deprecated therefore Task will need to be updated accordingly see https://developers.facebook.com/roadmap/offline-access-removal/
 - Support for sites running https protocol.
-- Complete the CSS, currently broken
+- Complete the CSS, currently broken.
 
 
 ## License
